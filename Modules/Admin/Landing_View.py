@@ -6,7 +6,7 @@ from pathlib import Path
 # Nếu chưa có, bạn có thể comment lại phần import này
 # import Modules.Login.Login_Process as lgp
 
-class Login_View:
+class Admin_View:
     def __init__(self):
         self.window = tk.Tk()
 
@@ -25,7 +25,7 @@ class Login_View:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"C:\DoAn\Image\Admin\LandingPage")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\LandingPage")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")
@@ -63,5 +63,5 @@ class Login_View:
 
 
 if __name__ == "__main__":
-    app = Login_View()
+    app = Admin_View()
     app.run()
