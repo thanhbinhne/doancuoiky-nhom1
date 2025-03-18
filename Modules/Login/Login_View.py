@@ -1,10 +1,14 @@
 import tkinter as tk
 from tkinter import Canvas, PhotoImage, Entry, Button
 from pathlib import Path
+import sys
+sys.path.append('c:/DoAn/doancuoiky-nhom1')
 
+import Modules.Login.Login_Process as lgp
+import Modules.ForgetPassword.Forgetpassword_Process as fgpw
 # Giả sử bạn có module xử lý login riêng
 # Nếu chưa có, bạn có thể comment lại phần import này
-# import Modules.Login.Login_Process as lgp
+
 
 class Login_View:
     def __init__(self):
@@ -25,7 +29,7 @@ class Login_View:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"C:\DoAn\Image\Login")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Login")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.login_image_1 = PhotoImage(file=assets_path / "Button_Login.png")
@@ -37,11 +41,11 @@ class Login_View:
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
         self.login_button = Button(image=self.login_image_1, borderwidth=0, highlightthickness=0,
-                               command=lambda: print("button_1 clicked"), relief="flat")
+                               command=lambda: lgp.Login_Process.confirm_button_handle(self))
         self.login_button.place(x=96, y=310, width=141, height=39)
 
-        self.signup_button = Button(image=self.signup_image, borderwidth=0, highlightthickness=0)
-                            #    command=lambda: lgp.Login_Process.signup_button_handle(self))
+        self.signup_button = Button(image=self.signup_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: lgp.Login_Process.signup_button_handle(self))
         self.signup_button.place(x=532, y=25, width=134, height=46.53)
 
         self.entry_bg_1 = self.canvas.create_image(160, 205, image=self.entry_image_1)
@@ -53,14 +57,9 @@ class Login_View:
         self.entry_2.place(x=60, y=262, width=200, height=33)
 
         self.forgetps_button = Button(image=self.forgetpw_image, borderwidth=0, highlightthickness=0)
+                                    #   command=lambda: fgpw.Forgetpassword_Process.signup_button_handle(self))
         self.forgetps_button.place(x=80, y=360, width=168, height=25)
                            
         self.window.resizable(0, 0)
 
-    def run(self):
-        self.window.mainloop()
 
-
-if __name__ == "__main__":
-    app = Login_View()
-    app.run()

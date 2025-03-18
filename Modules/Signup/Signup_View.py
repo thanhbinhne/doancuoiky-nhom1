@@ -1,10 +1,11 @@
 from tkinter import *
 import tkinter as tk
 from pathlib import Path
-# import Modules.Signup.Signup_Process as signup_process
-# import matplotlib.pyplot as plt
-# import matplotlib.image as mpimg
 
+import sys
+sys.path.append('c:/DoAn/doancuoiky-nhom1')
+
+import Modules.Signup.Signup_Process as signup_process
 
 class Signup_View:
     def __init__(self):
@@ -25,7 +26,7 @@ class Signup_View:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"C:\DoAn\Image\Signup")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Signup")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.login_image = PhotoImage(file=assets_path / "Button_Login.png")
@@ -36,12 +37,12 @@ class Signup_View:
 
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
-        self.login_button = Button(image=self.login_image, borderwidth=0, highlightthickness=0)
-                            #    command=lambda: signup_process.Signup_Process.login_button_handle(self))
+        self.login_button = Button(image=self.login_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: signup_process.Signup_Process.login_button_handle(self))
         self.login_button.place(x=532, y=25, width=128, height=39)
 
         self.signup_button = Button(image=self.signup_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: print("signup_button_1 clicked"), relief="flat")
+                               command=lambda: signup_process.Signup_Process.signup_button_handle(self))
         self.signup_button.place(x=90, y=360, width=138, height=40)
 
         self.entry_bg_1 = self.canvas.create_image(160, 181, image=self.entry_image)
@@ -66,8 +67,6 @@ class Signup_View:
         # self.signup_button_2.place(x=315.0, y=391.0, width=78.0, height=31.0)
         self.window.resizable(0, 0)
 
-    def run(self):
-        self.window.mainloop()
 class Trendingnow_View:
     def __init__(self):
         self.window = Tk()
@@ -107,8 +106,6 @@ class Trendingnow_View:
                             #    command=lambda: signup_process.Trendingnow_process.phim_button(self))
         self.button1.place(x=0.0, y=0.0, width=170.0, height=340.0)
 
-    def run(self):
-        self.window.mainloop()
 class Infor_View:
     def __init__(self):
         self.window = Tk()
@@ -130,8 +127,3 @@ class Infor_View:
 
 
 
-if __name__ == "__main__":
-    app1 = Signup_View()
-    app1.run()
-    # app2 = Trendingnow_View()
-    # app2.run()
