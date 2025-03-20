@@ -25,7 +25,9 @@ class User_Landing_View :
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\User\LandingPage")
+        # assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\User\LandingPage")
+        assets_path = Path("C:/Users/admin/.vscode/Test3/uel_form/Image/User/LandingPage")
+
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")

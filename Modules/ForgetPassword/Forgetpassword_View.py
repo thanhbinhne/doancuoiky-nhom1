@@ -20,7 +20,7 @@ class Login_View:
                              (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
         
         self.window.configure(bg="#FFFFFF")
-        self.window.title("Forget Password")
+        # self.window.title("Forget Password")
 
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
