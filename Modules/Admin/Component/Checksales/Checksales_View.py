@@ -3,6 +3,8 @@ from tkinter import ttk
 from tkinter import Canvas, PhotoImage, Entry, Button
 from pathlib import Path
 from PIL import Image, ImageTk
+import Api.Sale_Api as sale_api
+import Modules.Admin.Process.Admin_Process as adp
 
 class Admin_Users:
     def __init__(self):
@@ -24,7 +26,10 @@ class Admin_Users:
         self.canvas.place(x=0, y=0)
 
 
-        assets_path = Path(r"C:\DoAn\Image\Admin\Check Sales")
+        # assets_path = Path(r"C:\DoAn\Image\Admin\Check Sales")
+        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\CheckSales")
+
+
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")
@@ -39,8 +44,10 @@ class Admin_Users:
 
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
-        self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0)
-                                    # command=lambda: up.User_Landing_process.log_out_button_handle(self))
+        self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0,
+                                            command=lambda: adp.Admin_Process.button_handle(self, 'logout'))
+
+                                    
         self.logout_button.place(x=544, y=26, width=130, height=40)
 
         self.account_button = Button(image=self.account_image, borderwidth=0, highlightthickness=0)
@@ -56,13 +63,19 @@ class Admin_Users:
         self.checksales_button = Button(image=self.checksales_image, borderwidth=0, highlightthickness=0)
         self.checksales_button.place(x=24, y=90, width=144, height=48)
 
-        self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0)
+        self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0,
+                                                                            command=lambda: adp.Admin_Process.button_handle(self, 'inventory'))
+
         self.inventory_button.place(x=190, y=90, width=144, height=48)
 
-        self.hotels_button = Button(image=self.hotels_image, borderwidth=0, highlightthickness=0)
+        self.hotels_button = Button(image=self.hotels_image, borderwidth=0, highlightthickness=0,
+                                                                    command=lambda: adp.Admin_Process.button_handle(self, 'hotel'))
+
         self.hotels_button.place(x=358, y=90, width=144, height=48)
 
-        self.users_button = Button(image=self.user_image, borderwidth=0, highlightthickness=0)
+        self.users_button = Button(image=self.user_image, borderwidth=0, highlightthickness=0,
+                                                                command=lambda: adp.Admin_Process.button_handle(self, 'user'))
+
         self.users_button.place(x=524, y=90, width=144, height=48)
 
         self.entry_bg_1 = self.canvas.create_image(209, 181, image=self.textbox_image)
@@ -96,6 +109,28 @@ class Admin_Users:
         self.tree.column("quantity", width=60)
         self.tree.column("price", width=60)
         self.tree.column("total", width=80)
+
+        self.load_data()
+
+    def load_data(self):
+    # Clear existing data
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        # Fetch data from MongoDB
+        api = sale_api.Sale_Api()
+        sales_data = api.sales.find()
+
+        for sale in sales_data:
+            self.tree.insert("", "end", values=(
+                sale.get("invoice_id"),
+                sale.get("invoice_date").strftime("%Y-%m-%d") if sale.get("invoice_date") else "",
+                sale.get("hotel"),
+                sale.get("type_room"),
+                sale.get("quantity"),
+                sale.get("price"),
+                sale.get("total")
+            ))  # <-- Closing parentheses added here
 
     def run(self):
         self.window.mainloop()

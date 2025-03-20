@@ -3,6 +3,9 @@ from tkinter import ttk
 from tkinter import Canvas, PhotoImage, Entry, Button
 from pathlib import Path
 from PIL import Image, ImageTk
+import Modules.Admin.Process.Admin_Process as adp
+import Api.Inventory_Api as inven_api
+
 
 class Admin_Users:
     def __init__(self):
@@ -24,7 +27,9 @@ class Admin_Users:
         self.canvas.place(x=0, y=0)
 
 
-        assets_path = Path(r"C:\DoAn\Image\Admin\Inventory")
+        # assets_path = Path(r"C:\DoAn\Image\Admin\Inventory")
+        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\Inventory")
+
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")
@@ -41,8 +46,9 @@ class Admin_Users:
 
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
-        self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0)
+        self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0,
                                     # command=lambda: up.User_Landing_process.log_out_button_handle(self))
+                                    command=lambda: adp.Admin_Process.button_handle(self, 'logout'))
         self.logout_button.place(x=544, y=26, width=130, height=40)
 
         self.account_button = Button(image=self.account_image, borderwidth=0, highlightthickness=0)
@@ -53,22 +59,33 @@ class Admin_Users:
                                         # command=lambda: up.User_Landing_process.buytickets_button_handle(self))
         self.search_button.place(x=547, y=173, width=119, height=32)
 
-        self.update_button = Button(image=self.update_image, borderwidth=0, highlightthickness=0)
+        self.update_button = Button(image=self.update_image, borderwidth=0, highlightthickness=0,
+                                                        command=lambda: [adp.Admin_Process.inventory_action_handle(self, 'update'), self.load_data()]
+        )
+
         self.update_button.place(x=38, y=440, width=130, height=40)      
 
-        self.remove_button = Button(image=self.remove_image, borderwidth=0, highlightthickness=0)
+        self.remove_button = Button(image=self.remove_image, borderwidth=0, highlightthickness=0,
+                                                        command=lambda: adp.Admin_Process.inventory_clear_fields(self))
+
         self.remove_button.place(x=186, y=440, width=130, height=40)  
 
-        self.checksales_button = Button(image=self.checksales_image, borderwidth=0, highlightthickness=0)
+        self.checksales_button = Button(image=self.checksales_image, borderwidth=0, highlightthickness=0,
+                                                        command=lambda: adp.Admin_Process.button_handle(self, 'sale'))
+
         self.checksales_button.place(x=24, y=90, width=144, height=48)
 
         self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0)
         self.inventory_button.place(x=190, y=90, width=144, height=48)
 
-        self.hotels_button = Button(image=self.hotels_image, borderwidth=0, highlightthickness=0)
+        self.hotels_button = Button(image=self.hotels_image, borderwidth=0, highlightthickness=0,
+                                                        command=lambda: adp.Admin_Process.button_handle(self, 'hotel'))
+
         self.hotels_button.place(x=358, y=90, width=144, height=48)
 
-        self.users_button = Button(image=self.user_image, borderwidth=0, highlightthickness=0)
+        self.users_button = Button(image=self.user_image, borderwidth=0, highlightthickness=0,
+                                                        command=lambda: adp.Admin_Process.button_handle(self, 'user'))
+
         self.users_button.place(x=524, y=90, width=144, height=48)
 
 
@@ -102,7 +119,7 @@ class Admin_Users:
         self.table_frame.place(x=354,y=215)
 
         # Tạo Treeview (Bảng)
-        self.columns = ("hotel_name", "description", "type_room", "price")
+        self.columns = ("hotel_name", "description", "type_room", "price", "stock")
         self.tree = ttk.Treeview(self.table_frame, columns=self.columns, show="headings", height=9)
         self.tree.pack()
 
@@ -111,12 +128,59 @@ class Admin_Users:
         self.tree.heading("description", text="Description")
         self.tree.heading("type_room", text="Type Room")
         self.tree.heading("price", text="Price")
+        self.tree.heading("stock", text="Stock")
 
         # Điều chỉnh độ rộng cột (tổng width = 319)
         self.tree.column("hotel_name", width=80)
-        self.tree.column("description", width=100)
+        self.tree.column("description", width=70)
         self.tree.column("type_room", width=80)
         self.tree.column("price", width=50)
+        self.tree.column("stock", width=30)
+
+        self.tree.bind("<<TreeviewSelect>>", self.on_row_select)
+
+        self.load_data()
+    
+    def on_row_select(self, event):
+        """Load selected row data into input fields"""
+        selected_item = self.tree.selection()  # Get selected row
+        if selected_item:
+            values = self.tree.item(selected_item[0], "values")  # Get row values
+
+            # Set values in entry fields
+            self.entry_1.delete(0, tk.END)
+            self.entry_1.insert(0, values[0])  # Hotel Name
+
+            self.entry_2.delete(0, tk.END)
+            self.entry_2.insert(0, values[1])  # Description
+
+            self.entry_3.delete(0, tk.END)
+            self.entry_3.insert(0, values[2])  # Type Room
+
+            self.entry_4.delete(0, tk.END)
+            self.entry_4.insert(0, values[3])  # Price
+
+            self.entry_5.delete(0, tk.END)
+            self.entry_5.insert(0, values[4])  # Stock
+    
+    def load_data(self):
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        # Fetch data from MongoDB
+        api = inven_api.Inventory_Api()
+        inventory_data = list(api.inventory_collection.find())
+
+        for item in inventory_data:
+            self.tree.insert("", "end", values=(
+                item.get("hotel_name", ""),
+                item.get("description", ""),
+                item.get("type_room", ""),
+                str(item.get("price", "")),
+                str(item.get("stock", ""))
+            ))
+
+
     def run(self):
         self.window.mainloop()
 

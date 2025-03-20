@@ -29,7 +29,8 @@ class Login_View:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Login")
+        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Login")
+        # assets_path = Path(r"/home/long/Downloads/doancuoiky-nhom1/Image/Login")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.login_image_1 = PhotoImage(file=assets_path / "Button_Login.png")
