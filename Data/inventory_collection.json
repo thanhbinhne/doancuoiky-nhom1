@@ -1,0 +1,52 @@
+[
+    {
+    "_id": {
+      "$oid": "67dae5d08ff5a8ba91cc3fac"
+    },
+    "hotel_name": "Sunset Resort",
+    "description": "asdasd",
+    "type_room": "Children",
+    "price": "1921920190.0",
+    "stock": "1231231"
+  },
+  {
+    "_id": {
+      "$oid": "67dae5d08ff5a8ba91cc3fac"
+    },
+    "hotel_name": "Sunset Resort",
+    "description": "asdasd",
+    "type_room": "Children",
+    "price": "1921920190.0",
+    "stock": "1231231"
+  },
+  {
+    "_id": {
+      "$oid": "67dae5d08ff5a8ba91cc3fad"
+    },
+    "hotel_name": "Mountain View Hotel",
+    "description": "A cozy hotel surrounded by breathtaking mountain landscapes.",
+    "type_room": "lo",
+    "price": "100",
+    "stock": "20"
+  },
+  {
+    "_id": {
+      "$oid": "67dae5d08ff5a8ba91cc3fae"
+    },
+    "hotel_name": "City Lights Inn",
+    "description": "A modern hotel in the heart of the city with premium amenities.",
+    "type_room": "Executive Room",
+    "price": 180,
+    "stock": 10
+  },
+  {
+    "_id": {
+      "$oid": "67dae5d08ff5a8ba91cc3fb3"
+    },
+    "hotel_name": "Skyline Towers",
+    "description": "A high-rise hotel with a panoramic city skyline view.",
+    "type_room": "Penthouse",
+    "price": 350,
+    "stock": 7
+  }
+]
