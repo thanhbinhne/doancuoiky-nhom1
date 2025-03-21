@@ -1,0 +1,32 @@
+[
+    {
+    "_id": {
+      "$oid": "67dae544d492b4297d0aae93"
+    },
+    "hotel_id": "HT1",
+    "hotel_name": "VUng Tau",
+    "address": "ádasd",
+    "rating": "ádas",
+    "description": "ádasd"
+  },
+  {
+    "_id": {
+      "$oid": "67daea8f652a6e86ba26b38e"
+    },
+    "hotel_id": "HT001",
+    "hotel_name": "Hoa Hong ",
+    "address": "Vung Tau",
+    "rating": "200000",
+    "description": "asdasdas"
+  },
+  {
+    "_id": {
+      "$oid": "67dba5f7c364170af25ae8c6"
+    },
+    "hotel_id": "HT001",
+    "hotel_name": "Hoa Hong",
+    "address": "Vung Tau",
+    "rating": "5 sao",
+    "description": "nhu lon"
+  }
+]
