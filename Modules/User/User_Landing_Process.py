@@ -1,11 +1,11 @@
 import sys
-sys.path.append('c:/DoAn/doancuoiky-nhom1')
+sys.path.append(r'D:\uel_form-master')
 
 from tkinter import *
 from tkinter import messagebox
 import Modules.Login.Login_View as lgv
 # import Modules.User.Component.User_Main_View as usmv
-import Modules.Login.Login_View as lgv
+# import Modules.Login.Login_View as lgv
 
 
 class User_Landing_process:

@@ -3,6 +3,7 @@ from tkinter import ttk
 from pathlib import Path
 from tkinter import *
 from tkinter import Spinbox
+import importlib
 # from PIL import Image, ImageTk
 class HotelBookingApp:
     def __init__(self):
@@ -23,7 +24,7 @@ class HotelBookingApp:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=500, width=700, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\User\Booking_Hotels")
+        assets_path = Path(r"D:\uel_form-master\Image\User\Booking_Hotels")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.account_image = PhotoImage(file=assets_path / "Button_Account.png")
@@ -40,13 +41,13 @@ class HotelBookingApp:
                             #    command=lambda: signup_process.Signup_Process.login_button_handle(self))
         self.account_button.place(x=76, y=16, width=39, height=39)
 
-        self.check_button = Button(image=self.check_image, borderwidth=0, highlightthickness=0,relief="flat")
+        self.check_button = Button(image=self.check_image, borderwidth=0, highlightthickness=0,relief="flat",command=self.go_to_booking)
         self.check_button.place(x=536, y=437, width=130.4, height=32.8)
 
-        self.homepage_button = Button(image=self.homepage_image,borderwidth=0,highlightthickness=0)
+        self.homepage_button = Button(image=self.homepage_image,borderwidth=0,highlightthickness=0,command=self.go_to_homepage)
         self.homepage_button.place(x=37.3,y=70.1,width=130.4,height=32.8)
 
-        self.logout_button = Button(image=self.logout_image,borderwidth=0,highlightthickness=0)
+        self.logout_button = Button(image=self.logout_image,borderwidth=0,highlightthickness=0,command=self.go_to_login)
         self.logout_button.place(x=563,y=26,width=103.28,height=32.8)
 
         self.entry_bg_1 = self.canvas.create_image(180, 186, image=self.entry_image_1)
@@ -178,6 +179,24 @@ class HotelBookingApp:
         
         # Gọi lại hàm này sau 200ms để tiếp tục kiểm tra
         self.window.after(200, self.check_spinbox_values)
+
+    def go_to_homepage(self):
+        self.window.destroy()
+        User_Landing_View = importlib.import_module("Modules.User.User_Landing_View").User_Landing_View
+        User_Landing_View()
+
+
+    def go_to_login(self):
+        self.window.destroy()
+        Login_View = importlib.import_module("Modules.Login.Login_View").Login_View
+        Login_View()
+
+
+    def go_to_booking(self):
+        self.window.destroy()
+        from Modules.User.Component.Booking_Hotels.Booking_Page import Hotel_View
+        app = Hotel_View()
+        app.run()
     def run(self):
         self.window.mainloop()
 # Chạy ứng dụng

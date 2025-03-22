@@ -6,6 +6,9 @@ from pathlib import Path
 # Nếu chưa có, bạn có thể comment lại phần import này
 import Modules.Login.Login_Process as lgp
 import Modules.User.User_Landing_Process as ap
+from Modules.User.Component.User_Main_View import HotelBookingApp
+
+
 class User_Landing_View :
     def __init__(self):
         self.window = tk.Tk()
@@ -26,7 +29,7 @@ class User_Landing_View :
         self.canvas.place(x=0, y=0)
 
         # assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\User\LandingPage")
-        assets_path = Path("C:/Users/admin/.vscode/Test3/uel_form/Image/User/LandingPage")
+        assets_path = Path(r"D:\uel_form-master\Image\User\LandingPage")
 
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
@@ -39,10 +42,14 @@ class User_Landing_View :
                                command=lambda: ap.User_Landing_process.log_out_button_handle(self))
         self.logout_button.place(x=462, y=85, width=130, height=40)
 
-        self.bookingnow_button = Button(image=self.booking_image, borderwidth=0, highlightthickness=0)
+        self.bookingnow_button = Button(image=self.booking_image, borderwidth=0, highlightthickness=0,command=lambda:self.open_booking_page())
         self.bookingnow_button.place(x=290 ,y=390 ,width=123, height=24.52)
                            
         self.window.resizable(0, 0)
+    def open_booking_page(self):
+        self.window.destroy()
+        booking_app = HotelBookingApp()
+        booking_app.run()
 
     def run(self):
         self.window.mainloop()

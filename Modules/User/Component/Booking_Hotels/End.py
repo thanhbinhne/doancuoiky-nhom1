@@ -1,6 +1,7 @@
 # from tkinter import *
 # from pathlib import Path
 # import Modules.User.User_Landing_Process as up
+import os
 import tkinter as tk
 from tkinter import Canvas, PhotoImage, Entry, Button
 from pathlib import Path
@@ -26,7 +27,7 @@ class Hotel_View:
         self.canvas.place(x=0, y=0)
 
 
-        assets_path = Path(r"C:\DoAn\Image\User\End")
+        assets_path = Path(r"D:\uel_form-master\Image\User\End")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")
@@ -35,7 +36,7 @@ class Hotel_View:
         self.printinvoice_image = PhotoImage(file=assets_path / "Button_Printinvoice.png")
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
-        self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0)
+        self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0,command=self.open_login)
                                     # command=lambda: up.User_Landing_process.log_out_button_handle(self))
         self.logout_button.place(x=544, y=26, width=130, height=40)
 
@@ -47,7 +48,7 @@ class Hotel_View:
                                         # command=lambda: up.User_Landing_process.buytickets_button_handle(self))
         self.addhotel_button.place(x=96, y=80, width=239, height=48)
 
-        self.checksales_button = Button(image=self.quit_image, borderwidth=0, highlightthickness=0)
+        self.checksales_button = Button(image=self.quit_image, borderwidth=0, highlightthickness=0,command=self.open_landing_page)
         self.checksales_button.place(x=362, y=80, width=239, height=48)
 
 
@@ -91,8 +92,16 @@ class Hotel_View:
 
         self.window.resizable(0, 0)
 
-
-
+    def open_login(self):
+        self.window.destroy()
+        from Modules.Login.Login_View import Login_View
+        app = Login_View()
+        app.run()
+    def open_landing_page(self):
+        self.window.destroy()
+        from Modules.User.User_Landing_View import User_Landing_View
+        app = User_Landing_View()
+        app.run()
     def run(self):
         self.window.mainloop()
 
