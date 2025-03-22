@@ -27,7 +27,7 @@ class Admin_Users:
 
 
         # assets_path = Path(r"C:\DoAn\Image\Admin\Users")
-        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\Users")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\Users")
 
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
@@ -99,7 +99,7 @@ class Admin_Users:
         self.entry_3 = Entry(bd=0, bg="#CADBB7", fg="#000716", highlightthickness=0)
         self.entry_3.place(x=177, y=289, width=116.5, height=28)
 
-        self.background_image = Image.open(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\Users\PlainTextbox.png")  # Thay thế với đường dẫn ảnh của bạn
+        self.background_image = Image.open(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\Users\PlainTextbox.png")  # Thay thế với đường dẫn ảnh của bạn
         self.background_image = self.background_image.resize((20, 244))  # Điều chỉnh kích thước ảnh cho khung
         self.background_photo = ImageTk.PhotoImage(self.background_image)
 

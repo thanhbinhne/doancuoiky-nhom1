@@ -27,7 +27,7 @@ class Admin_Users:
 
 
 
-        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\Check Sales")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\CheckSales")
 
         # assets_path = Path(r"C:\DoAn\Image\Admin\Check Sales")
         # assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\CheckSales")
