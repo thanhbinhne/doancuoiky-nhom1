@@ -8,7 +8,7 @@ sys.path.append('C:/DoAn/doancuoiky-nhom1/Modules')
 import Api.Login_Api as Login_Api
 import Modules.Admin.Landing_View as av
 import Modules.User.User_Landing_View as uv
-import Signup.Signup_View as suv
+import Modules.Signup.Signup_View as suv
 
 
 class Login_Process:

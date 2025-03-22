@@ -1,0 +1,30 @@
+[
+    {
+    "_id": {
+      "$oid": "67dae5c98ff5a8ba91cc3fa3"
+    },
+    "invoice_id": 1,
+    "invoice_date": {
+      "$date": "2025-03-01T00:00:00.000Z"
+    },
+    "hotel": "Grand Palace Hotel",
+    "type_room": "Deluxe",
+    "quantity": 2,
+    "price": 120,
+    "total": 240
+  },
+  {
+    "_id": {
+      "$oid": "67dae5c98ff5a8ba91cc3fab"
+    },
+    "invoice_id": 9,
+    "invoice_date": {
+      "$date": "2025-03-09T00:00:00.000Z"
+    },
+    "hotel": "Seaside Lodge",
+    "type_room": "Penthouse",
+    "quantity": 1,
+    "price": 400,
+    "total": 400
+  }
+]

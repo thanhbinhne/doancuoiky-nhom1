@@ -1,5 +1,6 @@
 import Api.Main_Api as main_api
 import datetime
+from tkinter import messagebox
 
 
 class User_Api(main_api.Api):
@@ -9,6 +10,50 @@ class User_Api(main_api.Api):
     def __init__(self):
         super().__init__()
         self.connector()
+
+    def create_user(self, user):
+        """Create a new user with username, password, and role."""
+        if not user.get("Username") or not user.get("Password") or not user.get("Roles"):
+            messagebox.showerror("Error", "Username, password, and role are required")
+            return False  # Validation failed
+
+        # Check if the username already exists
+        existing_user = self.users_collection.find_one({"Username": user["Username"]})
+        if existing_user:
+            messagebox.showerror("Error", "Username already exists. Choose a different username.")
+            return False
+
+        try:
+            result = self.users_collection.insert_one(user)
+            messagebox.showinfo("Success", f"User created successfully! ID: {result.inserted_id}")
+            return True
+        except DuplicateKeyError as e:
+            messagebox.showerror("Error", f"Duplicate key error: {e}")
+            return False
+    def update_user(self, username, updated_fields):
+        """Update user details based on username."""
+        result = self.users_collection.update_one(
+            {"Username": username},  # Find user by username
+            {"$set": updated_fields}  # Update specific fields
+        )
+
+        if result.modified_count > 0:
+            messagebox.showinfo("Success", f"User '{username}' updated successfully.")
+            return True
+        else:
+            messagebox.showerror("Info", f"No updates made for user '{username}'.")
+            return False
+
+    def delete_user(self, username):
+        """Delete a user by username."""
+        result = self.users_collection.delete_one({"Username": username})
+
+        if result.deleted_count > 0:
+            messagebox.showinfo("Success", f"User '{username}' deleted successfully.")
+            return True
+        else:
+            messagebox.showerror("Error", f"User '{username}' not found.")
+            return False
 
     # get last Invoice_ID from invoice collection
     def get_last_invoice_id(self):
