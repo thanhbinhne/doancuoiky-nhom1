@@ -26,7 +26,7 @@ class User_Landing_View :
         self.canvas.place(x=0, y=0)
 
         # assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\User\LandingPage")
-        assets_path = Path("C:/Users/admin/.vscode/Test3/uel_form/Image/User/LandingPage")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\User\LandingPage")
 
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")

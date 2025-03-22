@@ -27,7 +27,7 @@ class Signup_View:
         self.canvas.place(x=0, y=0)
 
         # assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Signup")
-        assets_path = Path("/home/long/Downloads/doancuoiky-nhom1/Image/Signup")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Signup")
 
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")

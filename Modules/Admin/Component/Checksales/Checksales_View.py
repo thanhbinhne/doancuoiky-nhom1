@@ -26,10 +26,14 @@ class Admin_Users:
         self.canvas.place(x=0, y=0)
 
 
+
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\CheckSales")
+
         # assets_path = Path(r"C:\DoAn\Image\Admin\Check Sales")
-        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\CheckSales")
+        # assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\CheckSales")
 
 
+# >>>>>>> b407bf56789da82b92dcef5360956a321645f789:Modules/Admin/Component/Checksales/Checksales_View.py
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")

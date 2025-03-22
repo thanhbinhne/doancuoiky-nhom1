@@ -29,7 +29,7 @@ class Admin_View:
 
         # assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\LandingPage")
 
-        assets_path = Path("C:/Users/admin/.vscode/Test3/uel_form/Image/Admin/LandingPage")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\LandingPage")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")

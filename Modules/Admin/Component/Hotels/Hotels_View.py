@@ -28,7 +28,7 @@ class Hotel_View:
 
 
         # assets_path = Path(r"C:\DoAn\Image\Admin\Hotels")
-        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\Hotels")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\Hotels")
 
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")

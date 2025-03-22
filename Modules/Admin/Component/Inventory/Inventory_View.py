@@ -28,7 +28,7 @@ class Admin_Users:
 
 
         # assets_path = Path(r"C:\DoAn\Image\Admin\Inventory")
-        assets_path = Path(r"C:\Users\admin\.vscode\Test3\uel_form\Image\Admin\Inventory")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\Inventory")
 
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
