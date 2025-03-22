@@ -24,7 +24,7 @@ class Admin_Users:
         self.canvas.place(x=0, y=0)
 
 
-        assets_path = Path(r"C:\DoAn\Image\Admin\Check Sales")
+        assets_path = Path(r"C:\DoAn\doancuoiky-nhom1\Image\Admin\Check Sales")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")

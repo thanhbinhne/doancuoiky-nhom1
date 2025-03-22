@@ -27,52 +27,84 @@ class Signup_Process:
         error = api.check_user_signup(username,password,reenterpassword)
         standard_pass = api.check_password_standard(password)
 
-        if error == -1:
-            mbox.showerror('Warning','Invalid User Input')
-            # obj.entry_3.delete(0, END)
-            # obj.entry_1.delete(0, END)
-            # obj.entry_2.delete(0, END)
 
-        elif error == -2:
-            mbox.showerror('Warning', 'Password is not the same')
-            # obj.entry_3.delete(0, END)
-            # obj.entry_1.delete(0, END)
-            # obj.entry_2.delete(0, END)
-
-        elif error == -3:
-            mbox.showerror('Warning', 'Existed user')
-            # obj.entry_3.delete(0, END)
-            # obj.entry_1.delete(0, END)
-            # obj.entry_2.delete(0, END)
-            
-        else:
-            if standard_pass == 1:
+        if standard_pass == 1:
                 mbox.showerror(' Error', 'Password is too short')
                 # obj.entry_3.delete(0, END)
                 # obj.entry_1.delete(0, END)
                 # obj.entry_2.delete(0, END)
-            elif standard_pass == 2:
-                mbox.showerror('Error',"Password must contain at least one lowercase letter")
+        elif standard_pass == 2:
+            mbox.showerror('Error',"Password must contain at least one lowercase letter")
                 # obj.entry_3.delete(0, END)
                 # obj.entry_1.delete(0, END)
                 # obj.entry_2.delete(0, END)
-            elif standard_pass == 3:
-                mbox.showerror('Error' ,"Password must contain at least one uppercase letter")
+        elif standard_pass == 3:
+            mbox.showerror('Error' ,"Password must contain at least one uppercase letter")
                 # obj.entry_3.delete(0, END)
                 # obj.entry_1.delete(0, END)
                 # obj.entry_2.delete(0, END)
-            elif standard_pass == 4:
-                mbox.showerror('Error', "Password must contain at least one digit")
+        elif standard_pass == 4:
+            mbox.showerror('Error', "Password must contain at least one digit")
                 # obj.entry_3.delete(0, END)
                 # obj.entry_1.delete(0, END)
                 # obj.entry_2.delete(0, END)
-            elif standard_pass == 5:
-                mbox.showerror("Error", "Password must contain at least one special character")
+        elif standard_pass == 5:
+            mbox.showerror("Error", "Password must contain at least one special character")
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        # elif standard_pass == 0:
+        #     mbox.showinfo('Success', 'Account created successfully')
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        else:
+            if error == -1:
+                mbox.showerror('Warning','Invalid User Input')
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+
+            elif error == -2:
+                mbox.showerror('Warning', 'Password is not the same')
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+
+            elif error == -3:
+                mbox.showerror('Warning', 'Existed user')
                 # obj.entry_3.delete(0, END)
                 # obj.entry_1.delete(0, END)
                 # obj.entry_2.delete(0, END)
             else:
                 mbox.showinfo('Success', 'Account created successfully')
+        if standard_pass == 1:
+                mbox.showerror(' Error', 'Password is too short')
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        elif standard_pass == 2:
+            mbox.showerror('Error',"Password must contain at least one lowercase letter")
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        elif standard_pass == 3:
+            mbox.showerror('Error' ,"Password must contain at least one uppercase letter")
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        elif standard_pass == 4:
+            mbox.showerror('Error', "Password must contain at least one digit")
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        elif standard_pass == 5:
+            mbox.showerror("Error", "Password must contain at least one special character")
+                # obj.entry_3.delete(0, END)
+                # obj.entry_1.delete(0, END)
+                # obj.entry_2.delete(0, END)
+        elif standard_pass == 0:
+            mbox.showinfo('Success', 'Account created successfully')
                 # obj.entry_3.delete(0, END)
                 # obj.entry_1.delete(0, END)
                 # obj.entry_2.delete(0, END)
